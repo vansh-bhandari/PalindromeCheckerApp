@@ -1,47 +1,53 @@
+import java.util.LinkedList;
+
 /**
- * ============================================================
- * MAIN CLASS - UseCase2PalindromeCheckerApp
- * ============================================================
+ * =========================================================
+ * MAIN CLASS - UseCase8PalindromeCheckerApp
+ * =========================================================
  *
- * Use Case 2: Hardcoded Palindrome Validation
+ * Use Case 8: Linked List Based Palindrome Checker
  *
  * Description:
- * This class demonstrates basic palindrome validation
- * using a hardcoded string value.
+ * This class checks whether a string is a palindrome
+ * using a LinkedList.
  *
- * At this stage, the application:
- * - Stores a predefined string
- * - Compares characters from both ends
- * - Determines whether the string is a palindrome
- * - Displays the result on the console
+ * Characters are added to the list and then compared
+ * by removing elements from both ends:
+ *  - removeFirst()
+ *  - removeLast()
  *
- * This use case introduces fundamental comparison logic
- * before using advanced data structures.
+ * This demonstrates how LinkedList supports
+ * double-ended operations for symmetric validation.
  *
  * @author Developer
- * @version 2.0
+ * @version 8.0
  */
 public class PalindromeCheckerApp {
+
     /**
-     * Application entry point for UC2.
+     * Application entry point for UC8.
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args){
-        String input= "madam";
-        boolean isPalindrome= true;
-        for(int i=0;i<input.length()/2;i++){
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)){
-                isPalindrome= false;
+    public static void main(String[] args) {
+        String input = "level";
+        LinkedList<Character> list = new LinkedList<>();
+        for (char c : input.toCharArray()) {
+            list.add(c);
+        }
+        boolean isPalindrome = true;
+        while (list.size() > 1) {
+            char first = list.removeFirst();
+            char last = list.removeLast();
+            if (first != last) {
+                isPalindrome = false;
                 break;
             }
         }
-        if(isPalindrome){
-            System.out.println(input + " is a palindrome");
-        }
-        else{
-            System.out.println(input + " is not a palindrome");
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome.");
+        } else {
+            System.out.println(input + " is not a palindrome.");
         }
     }
 }
-
