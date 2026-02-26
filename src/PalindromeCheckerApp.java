@@ -22,6 +22,10 @@ import java.util.LinkedList;
  * @author Developer
  * @version 8.0
  */
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class PalindromeCheckerApp {
 
     /**
@@ -43,6 +47,8 @@ public class PalindromeCheckerApp {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
         if (isPalindrome) {
             System.out.println(input + " is a palindrome.");
