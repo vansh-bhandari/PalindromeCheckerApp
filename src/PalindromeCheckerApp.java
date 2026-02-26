@@ -51,6 +51,8 @@ public class PalindromeCheckerApp {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
         if (isPalindrome) {
             System.out.println("The string is a palindrome.");
