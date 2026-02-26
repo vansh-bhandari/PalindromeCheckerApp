@@ -1,47 +1,52 @@
 /**
- * ============================================================
- * MAIN CLASS - UseCase2PalindromeCheckerApp
- * ============================================================
+ * ---------------------------------------------------------------
+ * MAIN CLASS - UseCase4PalindromeCheckerApp
+ * ---------------------------------------------------------------
  *
- * Use Case 2: Hardcoded Palindrome Validation
+ * Use Case 4: Character Array Based Validation
  *
  * Description:
- * This class demonstrates basic palindrome validation
- * using a hardcoded string value.
+ * This class validates a palindrome by converting
+ * the string into a character array and comparing
+ * characters using the two-pointer technique.
  *
  * At this stage, the application:
- * - Stores a predefined string
- * - Compares characters from both ends
- * - Determines whether the string is a palindrome
- * - Displays the result on the console
+ * - Converts string to char array
+ * - Uses start and end pointers
+ * - Compares characters efficiently
+ * - Displays the result
  *
- * This use case introduces fundamental comparison logic
- * before using advanced data structures.
+ * This reduces extra memory usage.
  *
  * @author Developer
- * @version 2.0
+ * @version 4.0
  */
+
 public class PalindromeCheckerApp {
+
     /**
-     * Application entry point for UC2.
+     * Application entry point for UC4.
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args){
-        String input= "madam";
-        boolean isPalindrome= true;
-        for(int i=0;i<input.length()/2;i++){
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)){
-                isPalindrome= false;
+    public static void main(String[] args) {
+        String input = "radar";
+        char[] chars = input.toCharArray();
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
-        if(isPalindrome){
-            System.out.println(input + " is a palindrome");
-        }
-        else{
-            System.out.println(input + " is not a palindrome");
+        if (isPalindrome) {
+            System.out.println(input + " is a palindrome.");
+        } else {
+            System.out.println(input + " is not a palindrome.");
         }
     }
 }
-
