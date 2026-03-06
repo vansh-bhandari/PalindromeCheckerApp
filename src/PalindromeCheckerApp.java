@@ -1,59 +1,79 @@
-import java.util.LinkedList;
-
 /**
- * =========================================================
- * MAIN CLASS - UseCase8PalindromeCheckerApp
- * =========================================================
+ * ===============================================
+ * MAIN CLASS - UseCase11PalindromeCheckerApp
+ * ===============================================
  *
- * Use Case 8: Linked List Based Palindrome Checker
+ * Use Case 11: Object-Oriented Palindrome Service
  *
  * Description:
- * This class checks whether a string is a palindrome
- * using a LinkedList.
+ * This class demonstrates palindrome validation using
+ * object-oriented design.
  *
- * Characters are added to the list and then compared
- * by removing elements from both ends:
- *  - removeFirst()
- *  - removeLast()
+ * The palindrome logic is encapsulated inside a
+ * PalindromeService class.
  *
- * This demonstrates how LinkedList supports
- * double-ended operations for symmetric validation.
+ * This improves:
+ * - Reusability
+ * - Readability
+ * - Separation of concerns
  *
  * @author Developer
- * @version 8.0
+ * @version 11.0
  */
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC8.
+     * Application entry point for UC11.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        String input = "level";
-        LinkedList<Character> list = new LinkedList<>();
-        for (char c : input.toCharArray()) {
-            list.add(c);
-        }
-        boolean isPalindrome = true;
-        while (list.size() > 1) {
-            char first = list.removeFirst();
-            char last = list.removeLast();
-            if (first != last) {
-                isPalindrome = false;
-                break;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
+
+        PalindromeService service = new PalindromeService();
+
+        boolean result = service.checkPalindrome(input);
+
+        System.out.println("Is Palindrome? : " + result);
+
+        scanner.close();
+    }
+}
+
+/**
+ * Service class that contains palindrome logic.
+ */
+class PalindromeService {
+
+    /**
+     * Checks whether the input string is a palindrome.
+     *
+     * @param input Input string
+     * @return true if palindrome, false otherwise
+     */
+    public boolean checkPalindrome(String input) {
+
+        int start = 0;
+        int end = input.length() - 1;
+
+
+        while (start < end) {
+
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
+
             start++;
             end--;
         }
-        if (isPalindrome) {
-            System.out.println(input + " is a palindrome.");
-        } else {
-            System.out.println(input + " is not a palindrome.");
-        }
+
+        return true;
     }
 }
