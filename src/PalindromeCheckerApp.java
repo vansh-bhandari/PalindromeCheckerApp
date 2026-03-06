@@ -1,59 +1,86 @@
-import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * =========================================================
- * MAIN CLASS - UseCase8PalindromeCheckerApp
+ * MAIN CLASS - UseCase13PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 8: Linked List Based Palindrome Checker
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class checks whether a string is a palindrome
- * using a LinkedList.
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * Characters are added to the list and then compared
- * by removing elements from both ends:
- *  - removeFirst()
- *  - removeLast()
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * This demonstrates how LinkedList supports
- * double-ended operations for symmetric validation.
+ * This use case focuses purely on performance
+ * measurement and algorithm comparison.
+ *
+ * The goal is to introduce benchmarking concepts.
  *
  * @author Developer
- * @version 8.0
+ * @version 13.0
  */
-
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC8.
+     * Application entry point for UC13.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
+
         String input = "level";
-        LinkedList<Character> list = new LinkedList<>();
+        PalindromeStrategy strategy = new StackStrategy();
+        long startTime = System.nanoTime();
+
+        boolean result = strategy.check(input);
+        long endTime = System.nanoTime();
+        long executionTime = endTime - startTime;
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Execution Time : " + executionTime + " ns");
+    }
+}
+
+/**
+ * =========================================================
+ * INTERFACE - PalindromeStrategy
+ * =========================================================
+ *
+ * Defines the contract for palindrome algorithms.
+ */
+interface PalindromeStrategy {
+    boolean check(String input);
+}
+
+/**
+ * =========================================================
+ * CLASS - StackStrategy
+ * =========================================================
+ *
+ * Stack based palindrome validation.
+ */
+class StackStrategy implements PalindromeStrategy {
+
+    public boolean check(String input) {
+
+        Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) {
-            list.add(c);
+            stack.push(c);
         }
-        boolean isPalindrome = true;
-        while (list.size() > 1) {
-            char first = list.removeFirst();
-            char last = list.removeLast();
-            if (first != last) {
-                isPalindrome = false;
-                break;
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
             }
-            start++;
-            end--;
         }
-        if (isPalindrome) {
-            System.out.println(input + " is a palindrome.");
-        } else {
-            System.out.println(input + " is not a palindrome.");
-        }
+
+        return true;
     }
 }
