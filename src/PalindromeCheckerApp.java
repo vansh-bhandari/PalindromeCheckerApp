@@ -28,10 +28,53 @@ import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
+    public static void main(String[] args) {
+
+        String input = "level";
+        PalindromeStrategy strategy = new StackStrategy();
+
+        boolean result = strategy.check(input);
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+}
+
+/**
+ * =========================================================
+ * INTERFACE - PalindromeStrategy
+ * =========================================================
+ *
+ * This interface defines a contract for all
+ * palindrome checking algorithms.
+ *
+ * Any new algorithm must implement this interface
+ * and provide its own validation logic.
+ */
+
+interface PalindromeStrategy {
+    boolean check(String input);
+}
+
+/**
+ * =========================================================
+ * CLASS - StackStrategy
+ * =========================================================
+ *
+ * This class provides a Stack based implementation
+ * of the PalindromeStrategy interface.
+ *
+ * It uses LIFO behavior to reverse characters
+ * and compare them with the original sequence.
+ */
+
+class StackStrategy implements PalindromeStrategy {
+
     /**
      * Application entry point for UC13.
      *
-     * @param args Command-line arguments
+     * @param input String to validate
+     * @return true if palindrome, false otherwise
      */
     public static void main(String[] args) {
 
